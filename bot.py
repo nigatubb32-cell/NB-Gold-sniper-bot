@@ -9,8 +9,8 @@ from threading import Thread
 # ==========================================
 # 1. አድሚን እና ቦት ማስተካከያ (CONFIGURATION)
 # ==========================================
-TOKEN = 8786628566:AAHFJCH6OAC8e6PvhVP22cITV9scACqlF_U # <--- ከ BotFather የወሰድከውን ትክክለኛ Token እዚህ አስገባ
-ADMIN_ID = 8564747317        # <--- የእርስዎን ትክክለኛ የቴሌግራም Admin ID እዚህ አስገባ
+TOKEN = '8786628566:AAHFJCH6OAC8e6PvhVP22cITV9scACqlF_U'
+ADMIN_ID = 8564747317
 
 bot = telebot.TeleBot(TOKEN)
 app = Flask('')
@@ -88,7 +88,7 @@ def send_welcome(message):
     markup = types.InlineKeyboardMarkup(row_width=2)
     btn_sniper = types.InlineKeyboardButton("🎯 የዛሬው የ Sniper XAU/USD Setup", callback_data="sniper_setup")
     btn_mindset = types.InlineKeyboardButton("🧠 የ Sniper ትሬደር ስነ-ልቦና", callback_data="sniper_mindset")
-    btn_contact = types.InlineKeyboardButton("👨‍💻 ዋና አበልጻጊውን ማነጋገር", url="https://t.me/YOUR_USERNAME")
+    btn_contact = types.InlineKeyboardButton("👨‍💻 ዋና አበልጻጊውን ማነጋገር", url="https://t.me/NB_black_king") # የራስህን ዩዘርናም እዚህ ማስገባት ትችላለህ
     
     markup.add(btn_sniper, btn_mindset, btn_contact)
     bot.send_message(message.chat.id, welcome_text, parse_mode="Markdown", reply_markup=markup)
@@ -129,7 +129,7 @@ def handle_query(call):
         bot.answer_callback_query(call.id, "የስናይፐር አስተሳሰብ ተጭኗል!")
         bot.send_message(call.message.chat.id, mindset_text, parse_mode="Markdown")
 
-# አድሚኑ (አንተ) አዲስ ሲግናል በሰዓቱ እና በዋጋው በቀጥታ መላኪያ ትዕዛዝ
+# አድሚኑ አዲስ ሲግናል በሰዓቱ እና በዋጋው በቀጥታ መላኪያ ትዕዛዝ
 @bot.message_handler(commands=['send_signal'])
 def admin_broadcast(message):
     if message.from_user.id != ADMIN_ID:
@@ -163,3 +163,4 @@ if __name__ == '__main__':
     
     # ቦቱን ሁልጊዜ ነቅቶ እንዲቆይ ማድረግ
     bot.infinity_polling()
+
